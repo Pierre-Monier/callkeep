@@ -7,14 +7,8 @@
 //
 #import <Flutter/Flutter.h>
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <CallKit/CallKit.h>
-#import <Intents/Intents.h>
-#import <PushKit/PushKit.h>
 
-@interface CallKeep: NSObject<CXProviderDelegate, PKPushRegistryDelegate>
-@property (nonatomic, strong, nullable) CXCallController *callKeepCallController;
-@property (nonatomic, strong, nullable) CXProvider *callKeepProvider;
+@interface CallKeep: NSObject
 @property (nonatomic, strong, nullable) FlutterMethodChannel* eventChannel;
 
 - (BOOL)handleMethodCall:(FlutterMethodCall* _Nonnull)call result:(FlutterResult _Nonnull )result;
@@ -26,27 +20,5 @@
 + (BOOL)application:(UIApplication * _Nonnull)application
 continueUserActivity:(NSUserActivity * _Nonnull)userActivity
   restorationHandler:(void(^ _Nonnull)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler;
-
-+ (void)reportNewIncomingCall:(NSString * _Nonnull)uuidString
-                       handle:(NSString * _Nonnull)handle
-                   handleType:(NSString * _Nonnull)handleType
-                     hasVideo:(BOOL)hasVideo
-          localizedCallerName:(NSString * _Nullable)localizedCallerName
-                  fromPushKit:(BOOL)fromPushKit
-                      payload:(NSDictionary * _Nullable)payload;
-
-+ (void)reportNewIncomingCall:(NSString * _Nonnull)uuidString
-                       handle:(NSString * _Nonnull)handle
-                   handleType:(NSString * _Nonnull)handleType
-                     hasVideo:(BOOL)hasVideo
-          localizedCallerName:(NSString * _Nullable)localizedCallerName
-                  fromPushKit:(BOOL)fromPushKit
-                      payload:(NSDictionary * _Nullable)payload
-        withCompletionHandler:(void (^_Nullable)(void))completion;
-
-+ (void)endCallWithUUID:(NSString * _Nonnull)uuidString
-                 reason:(int)reason;
-
-+ (BOOL)isCallActive:(NSString * _Nonnull)uuidString;
 
 @end
